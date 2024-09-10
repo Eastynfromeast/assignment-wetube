@@ -1,0 +1,14 @@
+extends templates/layout
+
+block content
+  div
+    h3=movie.title
+    ul
+      li released in #{movie.year}
+      li rating #{movie.rating}
+    hr
+    p
+      strong Summary
+      br
+      | #{movie.summary}
+    a(href=`/movies/${movie.id}/edit`) &rarr; Edit movie 

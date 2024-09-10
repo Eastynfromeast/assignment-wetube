@@ -2,9 +2,8 @@ extends templates/layout
 include mixins/movie
 
 block content
-  h1 Home here!
-  if movie !== undefined
-    each movieItem in movies
-      +movie(movieItem)
-    else
-      div Sorry, nothing found
+  h3 Here are movies you are looking for...
+  each movieItem in movies
+    +movie(movieItem)
+  else
+    div Sorry, nothing found

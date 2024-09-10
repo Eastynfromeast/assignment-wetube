@@ -10,14 +10,26 @@ import Movie from "../models/Movie";
 export const home = async (req, res) => {
 	try {
 		const movies = await Movie.find({});
-		console.log("movies", movies);
 		return res.render("home", { pageTitle: "A11 Mongo 2 by Nulnu", movies });
 	} catch (error) {
 		console.log("home error", error);
 	}
 };
 
+export const detail = async (req, res) => {
+	const { id } = req.params;
+	console.log(id);
+	try {
+		const movie = await Movie.findById(id);
+		console.log("Movie Detail", movie);
+		return res.render("detail", { pageTitle: "Movie Detail", movie });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const upload = async (req, res) => {
+	const { title, summary, genres } = req.body;
 	if (req.method === "GET") {
 		return res.render("upload", { pageTitle: "Upload Movie" });
 	}
@@ -42,7 +54,7 @@ export const getEdit = async (req, res) => {
 	const { id } = req.params;
 	console.log(id);
 	try {
-		const movie = await Movie.findBy({ id });
+		const movie = await Movie.findById(id);
 		return res.render("edit", { pageTitle: movie.title, movie });
 	} catch {}
 };
