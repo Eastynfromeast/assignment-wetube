@@ -1,0 +1,9 @@
+extends templates/layout 
+
+block content
+  h2 Upload Movie
+  form(method="POST")
+    input(name="title", placeholder="Put the title here", type="text", required)
+    input(name="summary", placeholder="Put the summary here", type="text", required)
+    input(name="genres", placeholder="Put the genres with comma", type="text", required)
+    button(type="submit") Upload new movie!

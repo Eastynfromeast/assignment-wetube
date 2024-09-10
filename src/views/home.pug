@@ -1,0 +1,10 @@
+extends templates/layout
+include mixins/movie
+
+block content
+  h1 Home here!
+  if movie !== undefined
+    each movieItem in movies
+      +movie(movieItem)
+    else
+      div Sorry, nothing found
