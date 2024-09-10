@@ -17,4 +17,4 @@ app.use("/", movieRouter);
 
 // Codesanbox does not need PORT :)
 // But I am writing on local repository!
-app.listen(PORT, () => console.log(`✅  Server Ready!`));
+app.listen(PORT, () => console.log(`✅  Server Ready! on http://localhost:${PORT}`));

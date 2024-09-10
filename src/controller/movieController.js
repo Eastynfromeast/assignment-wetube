@@ -17,6 +17,39 @@ export const home = async (req, res) => {
 	}
 };
 
-export const upload = (req, res) => {
-	return res.render("upload", { pageTitle: "Upload Movie" });
+export const upload = async (req, res) => {
+	if (req.method === "GET") {
+		return res.render("upload", { pageTitle: "Upload Movie" });
+	}
+	if (req.method === "POST") {
+		try {
+			await Movie.create({
+				title,
+				summary,
+				genres: genres.split(",").map(genre => genre.trim().replaceAll(" ", "_")),
+			});
+			return res.redirect("/");
+		} catch (error) {
+			return res.render("upload", {
+				pageTitle: "Upload Video",
+				errorMessage: error._message,
+			});
+		}
+	}
+};
+
+export const getEdit = async (req, res) => {
+	const { id } = req.params;
+	console.log(id);
+	try {
+		const movie = await Movie.findBy({ id });
+		return res.render("edit", { pageTitle: movie.title, movie });
+	} catch {}
+};
+
+export const postEdit = async (req, res) => {
+	const { id } = req.params;
+	const { title, summary, year, rating, genres } = req.body;
+	try {
+	} catch {}
 };

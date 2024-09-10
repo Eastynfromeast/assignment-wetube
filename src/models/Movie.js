@@ -22,10 +22,12 @@ const MovieSchema = mongoose.Schema({
 	year: {
 		type: Number,
 		required: true,
+		default: 2024,
 	},
 	rating: {
 		type: Number,
 		required: true,
+		default: 0,
 	},
 	genres: [String],
 });
