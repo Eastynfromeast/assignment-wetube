@@ -1,0 +1,13 @@
+extends templates/layout 
+include mixins/movie
+
+block content
+    form(method="GET")
+      input(name="keyword", placeholder="Put the keyword here", type="text", required)
+      button(type="submit") Searh right now!
+    
+    div 
+      each movieItem in movies
+        +movie(movieItem)
+      if movies.length === 0 && keyword !== undefined
+        p There is no movie found.

@@ -89,3 +89,16 @@ export const deleteMovie = async (req, res) => {
 		return res.render("server-error");
 	}
 };
+
+export const search = async (req, res) => {
+	const { keyword } = req.query;
+	let movies = [];
+	if (keyword) {
+		movies = await Movie.find({
+			title: {
+				$regex: new RegExp(keyword, "i"),
+			},
+		});
+	}
+	return res.render("search", { pageTitle: "Search", movies, keyword });
+};
