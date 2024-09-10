@@ -8,4 +8,4 @@ block content
     input(name="year", placeholder="Put the year hear in digits", type="number", required, value=movie.year)
     input(name="rating", placeholder="Puth the rating", type="number", required, value=movie.rating, max=5)
     input(name="genres", placeholder="Put the genres with comma", type="text", required, value=movie.genres.join())
-    button(type="submit") Upload new movie!
+    button(type="submit") Edit #{movie.title}
