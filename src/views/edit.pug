@@ -6,6 +6,6 @@ block content
     input(name="title", placeholder="Put the title here", type="text", required, value=movie.title)
     input(name="summary", placeholder="Put the summary here", type="text", required, value=movie.summary)
     input(name="year", placeholder="Put the year hear in digits", type="number", required, value=movie.year)
-    input(name="rating", placeholder="Puth the rating", type="number", required, value=movie.rating)
+    input(name="rating", placeholder="Puth the rating", type="number", required, value=movie.rating, max=5)
     input(name="genres", placeholder="Put the genres with comma", type="text", required, value=movie.genres.join())
     button(type="submit") Upload new movie!

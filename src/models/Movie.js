@@ -28,6 +28,7 @@ const MovieSchema = mongoose.Schema({
 		type: Number,
 		required: true,
 		default: 0,
+		max: 5,
 	},
 	genres: [String],
 });
@@ -44,6 +45,10 @@ if (YOUR_USERNAME === null || typeof YOUR_USERNAME !== "string") {
 if (YOUR_USERNAME.includes("@")) {
 	throw Error("❌  Please remove the @ from your username  ❌");
 }
+
+MovieSchema.static("formatGenres", function (genres) {
+	return genres.split(",").map(genre => genre.trim().replaceAll(" ", "_"));
+});
 
 const model = mongoose.model(`Movie_${YOUR_USERNAME}`, MovieSchema);
 

@@ -2,13 +2,21 @@ extends templates/layout
 
 block content
   div
-    h3=movie.title
+    h4 Infos
     ul
       li released in #{movie.year}
-      li rating #{movie.rating}
+      li rating #{movie.rating}/5
     hr
     p
       strong Summary
       br
       | #{movie.summary}
+    br
+    div
+      h4 Genres
+      ul
+        each genre in movie.genres
+          li=genre
     a(href=`/movies/${movie.id}/edit`) &rarr; Edit movie 
+    br
+    a(href=`/movies/${movie.id}/delete`) &rarr; Delete movie 
