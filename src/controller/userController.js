@@ -1,7 +1,14 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
 
-export const home = async (req, res) => res.render("home", { pageTitle: "A13 User" });
+export const home = async (req, res) => {
+	const loggedUser = req.session.loggedUser;
+	if (!Boolean(loggedUser)) {
+		return res.redirect("/login");
+	} else {
+		return res.render("home", { pageTitle: `The user is ${loggedUser.name}` });
+	}
+};
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join us" });
 

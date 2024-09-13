@@ -5,15 +5,19 @@ html(lang="ko")
     link(rel="stylesheet" href="https://unpkg.com/mvp.css")
   body 
     header
-      h1=pageTitle
+      h1 #{pageTitle}
       nav
         ul
           li 
             a(href="/") Home
-          li 
-            a(href="/join") Join
-          li 
-            a(href="/login") Login
+          if isLoggedIn
+            li
+              a(href="/profile") Profile
+          else
+            li 
+              a(href="/join") Join
+            li 
+              a(href="/login") Login
           li 
             a(href="/movies/upload") Upload Video
           li 
