@@ -1,6 +1,7 @@
 import "./db";
 import "./models/Movie";
 import express from "express";
+import session from "express-session";
 import path from "path";
 import bodyParser from "body-parser";
 import movieRouter from "./router/movieRouter";
@@ -13,6 +14,14 @@ const app = express();
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+	session({
+		secret: "Nomad Movie by Nulnu",
+		resave: true,
+		saveUninitialized: true,
+	})
+);
 app.use(localsMiddleware);
 app.use("/", userRouter);
 app.use("/movies", movieRouter);
