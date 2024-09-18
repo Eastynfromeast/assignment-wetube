@@ -1,0 +1,12 @@
+extends templates/layout-txt
+
+block content 
+    h1 TXT2HTML
+    div
+        form(method="POST",action="read",enctype="multipart/form-data")
+          input(name="textFile",type="file",placeholder="Put your file here", accept=".txt")
+          input(type="submit",value="Convert")
+    ul
+      each file in files
+        li 
+          a(href=`/read/${file}`) #{file}

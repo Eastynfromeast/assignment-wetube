@@ -1,14 +1,10 @@
-import "./db";
-import "./models/Movie";
 import express from "express";
-import session from "express-session";
 import path from "path";
 import bodyParser from "body-parser";
-import movieRouter from "./router/movieRouter";
-import { localsMiddleware } from "./middlewares";
-import rootRouter from "./router/rootRouter";
 import multer from "multer";
 import fs from "fs";
+import { localsMiddleware } from "./middlewares";
+import rootRouter from "./routers/rootRouter";
 
 const PORT = 4000;
 
@@ -17,16 +13,9 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/* app.use(
-	session({
-		secret: "Nomad Movie by Nulnu",
-		resave: true,
-		saveUninitialized: true,
-	})
-); */
 app.use(localsMiddleware);
+app.use("/uploads", express.static("uploads"));
 app.use("/", rootRouter);
-// app.use("/movies", movieRouter);
 
 // Codesanbox does not need PORT :)
 // But I am writing on local repository!
